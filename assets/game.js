@@ -1,40 +1,73 @@
+
+var letterChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+var wins = 0;
+var losses = 0;
+var guesses = 9;
+var guessesLeft = 9;
+var guessedLetters = [];
+var userGuess = event.key;
+
+//computer randomly chooses a letter
+
+var computerGuess = letterChoices[Math.floor(Math.random() * letterChoices.length)];
+
+//guesses left function
+
+var updateGuessesLeft = function () {
+    document.querySelector('#guessLeft').innerHTML = "Guesses Left: " + guessesLeft;
+};
+
+//letter to guess function
+
+var updateletterToGuess = function () {
+    this.letterToGuess = this.letterChoices[Math.floor(Math.random() * this.letterChoices.length)];
+};
+
+var updateGuessesSoFar = function () {
+    document.querySelector('#let').innerHTML = "Your guesses so far: " + guessedLetters.join(', ');
+};
+
+
+
+var reset = function () {
+    totalGuesses = 9;
+    guessesLeft = 9;
+    guessedLetters = [];
+
+    updateletterToGuess();
+    updateGuessesSoFar();
+    updateGuessesLeft();
+
+};
+
+updateGuessesLeft();
+updateletterToGuess();
+
+//user input key
+
+
 document.onkeyup = function (event) {
+    guessesLeft--;
+    var userGuess;
+    console.log(userGuess)
 
-    //ctrl+r to refresh page, but also to set lettersGuessed by player to ''.
-    //the 'r' was being recorded as a guess.
-    if (event.keyCode == 73 && event.ctrlKey) {
-        startGame();
-    }
+    guessedLetters.push(userGuess);
+    updateGuessesLeft();
+    updateGuessesSoFar();
 
-    //allows only A-Z on keyboard to be registered as answers
-    else if (event.keyCode >= 65 && event.keyCode <= 90) {
-
-        var key = event.key;
-        console.log(computerChoice);
-        if (guesses != 0) {
-            lettersGuessed += key + ', ';
-            if (key == computerChoice) {
-                wins++;
-                display.innerHTML = "You WIN! The computer chose " + computerChoice +
-                    "<br/> To play again press any button.";
-                startGame();
-            }
-            else if (key != computerChoice && guesses != 0) {
-                guesses--;
-                displayResults('Keep Guessing!', key, 'Not Telling!', guesses);
-            }
+    if (guessesLeft > 0) {
+        if (userGuess === letterToGuess) {
+            wins++;
+            document.querySelector('#wins').innerHTML = 'Wins: ' + wins;
+            alert("How did you know!?!");
+            reset();
         }
-        else if (guesses == 0) {
-            losses++;
-            display.innerHTML = "You LOSE! The computer chose: " + computerChoice +
-                "<br/> To play again press any button.";
-            startGame();
-        }
-    }
+    } else if (guessesLeft == 0) {
+        losses++;
+        document.querySelector('#losses').innerHTML = 'Losses: ' + losses;
+        alert("Sorry, you're not a psychic!");
 
-    //this runs when ctrl+r is hit. shouldn't this not run? for some reason its reading the ctrl part
-    //when I press ctrl+r.
-    else {
-        alert("Only A-Z allowed.");
+        reset();
     }
 }
