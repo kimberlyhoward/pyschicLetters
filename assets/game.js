@@ -1,16 +1,16 @@
 
-var letterChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-var wins = 0;
-var losses = 0;
-var guesses = 9;
-var guessesLeft = 9;
-var guessedLetters = [];
-var userGuess = event.key;
+var wins = 0
+var losses = 0
+var guesses = 9
+var guessesLeft = 9
+var guessedLetters = []
+var letterToGuess = null
 
 //computer randomly chooses a letter
 
-var computerGuess = letterChoices[Math.floor(Math.random() * letterChoices.length)];
+var computerGuess =alphabet[Math.floor(Math.random() * alphabet.length)];
 
 //guesses left function
 
@@ -20,7 +20,7 @@ var updateGuessesLeft = function () {
 
 //letter to guess function
 
-var updateletterToGuess = function () {
+var updateLetterToGuess = function () {
     this.letterToGuess = this.letterChoices[Math.floor(Math.random() * this.letterChoices.length)];
 };
 
@@ -35,29 +35,26 @@ var reset = function () {
     guessesLeft = 9;
     guessedLetters = [];
 
-    updateletterToGuess();
+    updateLetterToGuess();
     updateGuessesSoFar();
     updateGuessesLeft();
 
 };
 
 updateGuessesLeft();
-updateletterToGuess();
-
-//user input key
+updateLetterToGuess();
 
 
-document.onkeyup = function (event) {
+document.onkeyup = function(event) {
     guessesLeft--;
-    var userGuess;
-    console.log(userGuess)
-
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+    
     guessedLetters.push(userGuess);
     updateGuessesLeft();
     updateGuessesSoFar();
 
     if (guessesLeft > 0) {
-        if (userGuess === letterToGuess) {
+        if (userGuess === letterToGuess){
             wins++;
             document.querySelector('#wins').innerHTML = 'Wins: ' + wins;
             alert("How did you know!?!");
@@ -66,8 +63,8 @@ document.onkeyup = function (event) {
     } else if (guessesLeft == 0) {
         losses++;
         document.querySelector('#losses').innerHTML = 'Losses: ' + losses;
-        alert("Sorry, you're not a psychic!");
+        alert("Sorry, you're not a psychic. Want to try again?");
 
         reset();
     }
-}
+};

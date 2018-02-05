@@ -8,35 +8,36 @@
     <title>Psychic Letter Game</title>
     <link rel="stylesheet" href="assets/reset.css">
     <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="assets/game.js">
 </head>
 
 <body>
     <h1> The Pyshic Letter Game
     </h1>
     <h2>
-        Guess What Letter I am Thinking of!
+        Try to guess which letter the computer has choosen!
     </h2>
 
     <h3>
         <div class="wins">
-            Wins:
-        </div>
-
-        <div class="losses">
-            Losses:
-        </div>
-
-        <div class="guessesLeft">
-            Number of Guesses Left:
-        </div>
-
-        <div class="guessedLetters">
-            Letters guessed:
-        </div>
+            <div id="game">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p id="wins">Wins: </p>
+                    </li>
+                    <li class="list-group-item">
+                        <p id="losses">Losses: </p>
+                    </li>
+                    <li class="list-group-item">
+                        <p id="guessLeft">Guesses Left: </p>
+                    </li>
+                    <li class="list-group-item">
+                        <p id="let">Your Guesses so far: </p>
+                    </li>
+                </ul>
+            </div>
     </h3>
 
-    <img src="assets/alphabetLetters.jpg" alt="" width="400 px" height="400px">;
+    <img src="assets/alphabetLetters.jpg" alt="" width="400 px" height="400px">
 
     <script src="assets/game.js"></script>
 
