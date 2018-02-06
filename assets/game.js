@@ -1,16 +1,22 @@
-
-var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-
-var wins = 0
-var losses = 0
-var guesses = 9
-var guessesLeft = 9
-var guessedLetters = []
-var letterToGuess = null
+var wins = 0;
+var losses = 0;
+var guesses = 9;
+var guessesLeft = 9;
+var guessedLetters = [];
+var letterToGuess = null;
+var computerGuess = "";
+var userGuess = "";
 
 //computer randomly chooses a letter
+function computerGuess (){
+var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 var computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
+
+computerGuess = [randomIndex];
+console.log('computerGuess', computerGuess);
+return computerGuess;
+}
 
 //guesses left function
 
@@ -28,8 +34,6 @@ var updateGuessesSoFar = function () {
     document.querySelector('#let').innerHTML = "Your guesses so far: " + guessedLetters.join(', ');
 };
 
-
-
 var reset = function () {
     totalGuesses = 9;
     guessesLeft = 9;
@@ -38,7 +42,6 @@ var reset = function () {
     updateLetterToGuess();
     updateGuessesSoFar();
     updateGuessesLeft();
-
 }
 
 updateGuessesLeft();
@@ -47,7 +50,7 @@ updateLetterToGuess();
 
 document.onkeyup = function(event) {
     guessesLeft--;
-    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+    var userGuess = event.key;
     
     guessedLetters.push(userGuess);
     updateGuessesLeft();
