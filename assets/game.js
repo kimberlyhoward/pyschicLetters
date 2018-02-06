@@ -10,18 +10,18 @@ var letterToGuess = null
 
 //computer randomly chooses a letter
 
-var computerGuess =alphabet[Math.floor(Math.random() * alphabet.length)];
+var computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
 
 //guesses left function
 
-var updateGuessesLeft = function () {
+var updateGuessesLeft = function() {
     document.querySelector('#guessLeft').innerHTML = "Guesses Left: " + guessesLeft;
 };
 
 //letter to guess function
 
 var updateLetterToGuess = function () {
-    this.letterToGuess = this.letterChoices[Math.floor(Math.random() * this.letterChoices.length)];
+    this.letterToGuess = this.alphabet[Math.floor(Math.random() * this.alphabet.length)];
 };
 
 var updateGuessesSoFar = function () {
@@ -39,7 +39,7 @@ var reset = function () {
     updateGuessesSoFar();
     updateGuessesLeft();
 
-};
+}
 
 updateGuessesLeft();
 updateLetterToGuess();
