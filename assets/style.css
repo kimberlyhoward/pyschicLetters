@@ -1,8 +1,7 @@
 body {
-    color: rebeccapurple;
+    color: red;
     font-family: 'Times New Roman', Times, serif; 
-    font-size: 25px; 
-    background-color: lavender;
+    background-image: url("alphabetLetters.jpg");
 }
 h1 {
     text-align: center;
@@ -12,5 +11,8 @@ h2  {
 text-align: center;
 font-size: 30px;
 }
-
-/* Picture from https://thetomatos.com/free-clipart-24006/ */
+ 
+h3 {
+    text-align: center;
+    font-size: 30px; 
+}
